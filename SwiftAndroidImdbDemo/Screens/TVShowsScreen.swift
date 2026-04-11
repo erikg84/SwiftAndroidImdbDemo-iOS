@@ -24,10 +24,10 @@ struct TVShowsScreen: View {
             ErrorBanner(message: msg)
         case .loaded(let page):
             List {
-                ForEach(page.results) { show in
+                ForEach(page.results) { (show: TVShow) in
                     VStack(alignment: .leading, spacing: 4) {
                         Text(show.name).font(.headline)
-                        Text("⭐ \(String(format: "%.1f", show.voteAverage))  •  first aired \(show.firstAirDate ?? "?")")
+                        Text("⭐ \(String(format: "%.1f", show.voteAverage))  •  first aired \(show.firstAirDate)")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }

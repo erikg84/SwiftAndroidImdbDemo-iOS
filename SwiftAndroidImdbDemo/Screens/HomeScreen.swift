@@ -28,9 +28,9 @@ struct HomeScreen: View {
             List {
                 ForEach(page.results) { (item: MediaItem) in
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(item.title ?? item.name ?? "(untitled)")
+                        Text(item.title.isEmpty ? "(untitled)" : item.title)
                             .font(.headline)
-                        Text("\(item.mediaType)  •  ⭐ \(String(format: "%.1f", item.voteAverage))")
+                        Text("\(item.mediaType)  •  ⭐ \(String(format: "%.1f", item.voteAverage))  •  \(item.releaseDate ?? "")")
                             .font(.subheadline)
                             .foregroundStyle(.secondary)
                     }

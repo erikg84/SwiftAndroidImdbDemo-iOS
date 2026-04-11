@@ -43,10 +43,10 @@ struct SearchScreen: View {
                     .padding(.horizontal)
             } else {
                 List {
-                    ForEach(page.results) { movie in
+                    ForEach(page.results) { (movie: Movie) in
                         VStack(alignment: .leading, spacing: 4) {
                             Text(movie.title).font(.headline)
-                            Text("⭐ \(String(format: "%.1f", movie.voteAverage))  •  \(movie.releaseDate ?? "")")
+                            Text("⭐ \(String(format: "%.1f", movie.voteAverage))  •  \(movie.releaseDate)")
                                 .font(.subheadline)
                                 .foregroundStyle(.secondary)
                         }
