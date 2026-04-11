@@ -16,4 +16,5 @@ Package.resolved
 
 # Local secrets
 SwiftAndroidImdbDemo/tmdb-token.txt
+SwiftAndroidImdbDemo/tmdb-api-key.txt
 .DS_Store
