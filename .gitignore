@@ -1,0 +1,19 @@
+# Xcode
+build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+
+# xcodegen output (regenerated locally)
+*.xcodeproj
+*.xcworkspace
+
+# SPM
+.build/
+.swiftpm/
+Package.resolved
+
+# Local secrets
+SwiftAndroidImdbDemo/tmdb-token.txt
+.DS_Store
