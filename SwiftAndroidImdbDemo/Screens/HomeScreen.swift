@@ -25,15 +25,17 @@ struct HomeScreen: View {
         case .failed(let msg):
             ErrorBanner(message: msg)
         case .loaded(let page):
-            List(page.results, id: \.id) { item in
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(item.title ?? item.name ?? "(untitled)")
-                        .font(.headline)
-                    Text("\(item.mediaType)  •  ⭐ \(String(format: "%.1f", item.voteAverage))")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+            List {
+                ForEach(page.results, id: \.id) { item in
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(item.title ?? item.name ?? "(untitled)")
+                            .font(.headline)
+                        Text("\(item.mediaType)  •  ⭐ \(String(format: "%.1f", item.voteAverage))")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.vertical, 4)
                 }
-                .padding(.vertical, 4)
             }
             .listStyle(.plain)
         }

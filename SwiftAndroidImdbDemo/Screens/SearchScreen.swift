@@ -42,14 +42,16 @@ struct SearchScreen: View {
                     .foregroundStyle(.secondary)
                     .padding(.horizontal)
             } else {
-                List(page.results, id: \.id) { movie in
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(movie.title).font(.headline)
-                        Text("⭐ \(String(format: "%.1f", movie.voteAverage))  •  \(movie.releaseDate ?? "")")
-                            .font(.subheadline)
-                            .foregroundStyle(.secondary)
+                List {
+                    ForEach(page.results, id: \.id) { movie in
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(movie.title).font(.headline)
+                            Text("⭐ \(String(format: "%.1f", movie.voteAverage))  •  \(movie.releaseDate ?? "")")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        .padding(.vertical, 4)
                     }
-                    .padding(.vertical, 4)
                 }
                 .listStyle(.plain)
             }

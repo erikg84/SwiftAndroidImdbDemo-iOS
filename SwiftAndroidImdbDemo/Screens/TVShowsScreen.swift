@@ -23,14 +23,16 @@ struct TVShowsScreen: View {
         case .failed(let msg):
             ErrorBanner(message: msg)
         case .loaded(let page):
-            List(page.results, id: \.id) { show in
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(show.name).font(.headline)
-                    Text("⭐ \(String(format: "%.1f", show.voteAverage))  •  first aired \(show.firstAirDate ?? "?")")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
+            List {
+                ForEach(page.results, id: \.id) { show in
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(show.name).font(.headline)
+                        Text("⭐ \(String(format: "%.1f", show.voteAverage))  •  first aired \(show.firstAirDate ?? "?")")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.vertical, 4)
                 }
-                .padding(.vertical, 4)
             }
             .listStyle(.plain)
         }
