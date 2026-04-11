@@ -26,7 +26,7 @@ struct HomeScreen: View {
             ErrorBanner(message: msg)
         case .loaded(let page):
             List {
-                ForEach(page.results) { item in
+                ForEach(page.results) { (item: MediaItem) in
                     VStack(alignment: .leading, spacing: 4) {
                         Text(item.title ?? item.name ?? "(untitled)")
                             .font(.headline)
