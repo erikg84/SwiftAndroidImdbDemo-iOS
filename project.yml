@@ -14,13 +14,7 @@ settings:
     DEVELOPMENT_TEAM: ""   # set in Xcode if you want to run on a device
     CODE_SIGN_STYLE: Automatic
     ENABLE_USER_SCRIPT_SANDBOXING: NO
-
-# The SDK is the published wrapper repo — SPM downloads the XCFramework
-# from a public GCS bucket on first resolve. No auth needed.
-packages:
-  SwiftAndroidSDK:
-    url: https://github.com/erikg84/swift-android-idbm-sdk-spm
-    from: "1.1.3"
+    FRAMEWORK_SEARCH_PATHS: $(SRCROOT)/Frameworks
 
 targets:
   SwiftAndroidImdbDemo:
@@ -46,5 +40,5 @@ targets:
         MARKETING_VERSION: "1.0.0"
         TARGETED_DEVICE_FAMILY: "1,2"
     dependencies:
-      - package: SwiftAndroidSDK
-        product: SwiftAndroidSDK
+      - framework: Frameworks/SwiftAndroidSDK.xcframework
+        embed: true
