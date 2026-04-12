@@ -1,6 +1,6 @@
 # SwiftAndroid IMDB Demo — iOS client
 
-A minimal SwiftUI app that demonstrates consuming the per-screen viewmodels from [SwiftAndroidIMDBSdk](https://github.com/erikg84/SwiftAndroidIMDBSdk) v1.1.0+ via the SPM wrapper repo [`swift-android-idbm-sdk-spm`](https://github.com/erikg84/swift-android-idbm-sdk-spm).
+A minimal SwiftUI app that demonstrates consuming the per-screen viewmodels from [SwiftAndroidIMDBSdk](https://github.com/erikg84/SwiftAndroidIMDBSdk) v1.1.3+ via the SPM wrapper repo [`swift-android-idbm-sdk-spm`](https://github.com/erikg84/swift-android-idbm-sdk-spm).
 
 Five screens, five SDK viewmodels, **zero wrapper classes**, **zero shared viewmodels** — each screen owns exactly one `TMDBContainer.get<Screen>ViewModel()` and renders the result.
 
@@ -93,7 +93,7 @@ This app references the **published** SDK via the SPM wrapper repo — not a loc
 packages:
   SwiftAndroidSDK:
     url: https://github.com/erikg84/swift-android-idbm-sdk-spm
-    from: "1.1.0"
+    from: "1.1.3"
 ```
 
 Then `xcodegen generate && open SwiftAndroidImdbDemo.xcodeproj`.

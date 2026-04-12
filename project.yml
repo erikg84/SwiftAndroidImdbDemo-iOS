@@ -20,7 +20,7 @@ settings:
 packages:
   SwiftAndroidSDK:
     url: https://github.com/erikg84/swift-android-idbm-sdk-spm
-    from: "1.1.0"
+    from: "1.1.3"
 
 targets:
   SwiftAndroidImdbDemo:
