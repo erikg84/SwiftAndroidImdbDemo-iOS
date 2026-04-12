@@ -16,8 +16,7 @@ settings:
     ENABLE_USER_SCRIPT_SANDBOXING: NO
 
 # The SDK is the published wrapper repo — SPM downloads the XCFramework
-# from GitHub Packages on first resolve. See README.md for the one-time
-# ~/.netrc setup needed for maven.pkg.github.com auth.
+# from a public GCS bucket on first resolve. No auth needed.
 packages:
   SwiftAndroidSDK:
     url: https://github.com/erikg84/swift-android-idbm-sdk-spm
