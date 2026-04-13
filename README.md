@@ -10,7 +10,7 @@ iOS client app consuming the [SwiftAndroidIMDBSdk](https://github.com/erikg84/Sw
 | **SDK ViewModels** | Stateless command objects | `TMDBContainer.getHomeViewModel()` — no DI framework in the client |
 | **State** | `@State` + `.task {}` | Each screen owns its own state, fetches in a `.task` block |
 | **Project Generation** | XcodeGen | `project.yml` generates `.xcodeproj` |
-| **SDK** | SwiftAndroidSDK.xcframework | Local framework (built from SDK repo) or via Gitea Swift Registry |
+| **SDK Resolution** | Gitea Swift Package Registry | `id: "dallaslabs-sdk.swift-android-sdk"` — SPM queries Gitea, downloads XCFramework from GCS automatically |
 
 ## Navigation
 
@@ -56,23 +56,27 @@ struct CountriesScreen: View {
 
 ## Setup
 
-1. **Build the SDK XCFramework** (one-time):
+1. **Configure the Gitea Swift Package Registry** (one-time per machine):
    ```bash
-   cd /path/to/SwiftAndroidSdk
-   bash scripts/build-xcframework.sh /tmp/xcf
+   swift package-registry set --global --scope dallaslabs-sdk --allow-insecure-http \
+     http://34.60.86.141:3000/api/packages/dallaslabs-sdk/swift
    ```
-2. **Copy the framework**:
+2. **TMDB credentials** in `tmdb-token.txt` (gitignored) or `TMDB_BEARER_TOKEN` env var
+3. **Clone, generate, and build**:
    ```bash
-   cp -R /tmp/xcf/SwiftAndroidSDK.xcframework Frameworks/
-   ```
-3. **TMDB credentials** in `tmdb-token.txt` (gitignored) or `TMDB_BEARER_TOKEN` env var
-4. **Generate Xcode project**:
-   ```bash
-   brew install xcodegen
+   git clone https://github.com/erikg84/SwiftAndroidImdbDemo-iOS.git
+   cd SwiftAndroidImdbDemo-iOS
+   swift package resolve    # fetches SDK from Gitea → GCS
    xcodegen generate
    open SwiftAndroidImdbDemo.xcodeproj
    ```
-5. Build and run on simulator (iOS 16+)
+4. Build and run on simulator (iOS 16+)
+
+The `Package.swift` uses a clean registry dependency:
+```swift
+.package(id: "dallaslabs-sdk.swift-android-sdk", from: "1.1.7")
+```
+No local frameworks, no hardcoded zip URLs. SPM resolves the version through Gitea, which returns a `binaryTarget` pointing at GCS.
 
 ## License
 
