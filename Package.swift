@@ -5,7 +5,7 @@ let package = Package(
     name: "SwiftAndroidSDKPackage",
     platforms: [.iOS(.v15)],
     dependencies: [
-        .package(id: "dallaslabs-sdk.swift-android-sdk", from: "1.1.6"),
+        .package(id: "dallaslabs-sdk.swift-android-sdk", from: "1.1.7"),
     ],
     targets: []
 )
