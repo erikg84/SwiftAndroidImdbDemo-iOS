@@ -1,6 +1,3 @@
-# XcodeGen spec — generates SwiftAndroidImdbDemo.xcodeproj from this YAML.
-# Re-run `xcodegen generate` after editing.
-
 name: SwiftAndroidImdbDemo
 options:
   bundleIdPrefix: io.github.erikg84
@@ -11,10 +8,15 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.9"
-    DEVELOPMENT_TEAM: ""   # set in Xcode if you want to run on a device
+    DEVELOPMENT_TEAM: ""
     CODE_SIGN_STYLE: Automatic
     ENABLE_USER_SCRIPT_SANDBOXING: NO
-    FRAMEWORK_SEARCH_PATHS: $(SRCROOT)/Frameworks
+
+# SDK resolved via local Package.swift binaryTarget pointing at GCS.
+# SPM downloads the XCFramework automatically — no manual copy needed.
+packages:
+  SwiftAndroidSDKPackage:
+    path: .
 
 targets:
   SwiftAndroidImdbDemo:
@@ -40,5 +42,5 @@ targets:
         MARKETING_VERSION: "1.0.0"
         TARGETED_DEVICE_FAMILY: "1,2"
     dependencies:
-      - framework: Frameworks/SwiftAndroidSDK.xcframework
-        embed: true
+      - package: SwiftAndroidSDKPackage
+        product: SwiftAndroidSDK
